@@ -15,7 +15,7 @@ metadata:
   uid: b409e28d-0562-49b9-9e52-2f26cc5ca9a1
 spec:
   progressDeadlineSeconds: 600
-  replicas: 5
+  replicas: 10 
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -27,7 +27,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: synergychat-web
     spec:
@@ -45,19 +44,6 @@ spec:
       terminationGracePeriodSeconds: 30
 status:
   availableReplicas: 3
-  conditions:
-  - lastTransitionTime: "2024-10-06T20:36:07Z"
-    lastUpdateTime: "2024-10-06T20:36:17Z"
-    message: ReplicaSet "synergychat-web-fbdb8d849" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2024-10-06T21:20:18Z"
-    lastUpdateTime: "2024-10-06T21:20:18Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
   observedGeneration: 4
   readyReplicas: 3
   replicas: 3
