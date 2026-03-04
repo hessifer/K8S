@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-ngnix-pod
+  namespace: default
+  labels:
+    type: front-end 
+    app: ngnix
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
