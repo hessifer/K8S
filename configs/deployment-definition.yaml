@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: myapp-nginx
-  replicas: 1
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,3 +23,5 @@ spec:
       containers:
       - name: myapp-nginx 
         image: nginx 
+        ports:
+        - containerPort: 80
