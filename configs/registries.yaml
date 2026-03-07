@@ -1,0 +1,12 @@
+mirrors:
+  "reg.hessifer.me":
+    endpoint:
+      - "http://reg.hessifer.me"
+
+configs:
+  "reg.hessifer.me":
+    auth:
+      # Optional: Base64 encoded "username:password"
+      # auth: <base64-encoded-string>
+    tls:
+      insecure_skip_verify: true

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dwarf-dragon-mace
+  labels:
+    app: dwarf-dragon-mace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dwarf-dragon-mace
+  template:
+    metadata:
+      labels:
+        app: dwarf-dragon-mace
+    spec:
+      containers:
+      - name: dwarf-dragon-mace
+        image: reg.hessifer.me/nagalot/dwarf-dragon-mace:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dwarf-dragon-mace-svc
+spec:
+  selector:
+    app: dwarf-dragon-mace
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dwarf-dragon-mace-ir
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`www.hessifer.me`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: dwarf-dragon-mace-svc
+      port: 80
